@@ -125,7 +125,7 @@ export default function CreateEventForm() {
             console.log("Data from Server response: ", resData);
             if (resData.insertedId) {
                 toast.success("Event created successfully!");
-                router.push('/upcoming-events');
+                router.push('/events');
                 router.refresh();
             }
             // Clear the form after a successful API response instead.
