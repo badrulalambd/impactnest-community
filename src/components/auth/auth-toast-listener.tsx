@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -10,29 +9,33 @@ export default function AuthToastListener() {
   const searchParams = useSearchParams();
   const hasShownToast = useRef(false);
 
+  const authStatus = searchParams.get("auth");
+  const queryString = searchParams.toString();
+
   useEffect(() => {
-    if (searchParams.get("auth") !== "google-success") {
+    if (
+      authStatus !== "google-success" ||
+      hasShownToast.current
+    ) {
       return;
     }
 
     // Prevent duplicate success notifications.
-    if (hasShownToast.current) {
-      return;
-    }
-
     hasShownToast.current = true;
 
     toast.success("Login successful!");
 
-    // Remove the temporary query parameter.
-    const params = new URLSearchParams(searchParams.toString());
+    // Remove the temporary authentication parameter.
+    const params = new URLSearchParams(queryString);
     params.delete("auth");
 
-    const query = params.toString();
-    const cleanUrl = query ? `/?${query}` : "/";
+    const remainingQuery = params.toString();
+    const cleanUrl = remainingQuery
+      ? `/?${remainingQuery}`
+      : "/";
 
     router.replace(cleanUrl, { scroll: false });
-  }, [searchParams, router]);
+  }, [authStatus, queryString, router]);
 
   return null;
 }

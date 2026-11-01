@@ -7,7 +7,6 @@ import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import {
   CalendarDays,
-  CirclePlus,
   LogIn,
   LogOut,
   Menu,
@@ -47,7 +46,7 @@ import { useState } from "react";
 
 const NAV_LINKS = [
   {
-    href: "/upcoming-events",
+    href: "/events",
     label: "Upcoming Events",
     icon: CalendarDays,
   },
