@@ -162,7 +162,7 @@ export default function EventsExplorer({
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
-                  href="/create-event"
+                  href="/events/create-event"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF7900] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/10 transition hover:bg-[#e86e00] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange-300/40"
                 >
                   Create Event
@@ -361,7 +361,7 @@ export default function EventsExplorer({
               </button>
             ) : (
               <Link
-                href="/create-event"
+                href="/events/create-event"
                 className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e86e00]"
               >
                 Create an Event

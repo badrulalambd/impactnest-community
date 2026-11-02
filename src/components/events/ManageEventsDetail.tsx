@@ -16,6 +16,8 @@ import {
     Users,
 } from "lucide-react";
 import { toast } from "react-hot-toast";
+import EditEventDialog from "./EditEventDialog";
+import DeleteEventAlert from "./DeleteEventAlert";
 
 const API_BASE_URL =
     process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL;
@@ -94,10 +96,10 @@ const ManageEventsData = () => {
                 const eventList: EventItem[] = Array.isArray(data)
                     ? data
                     : Array.isArray(data.events)
-                      ? data.events
-                      : Array.isArray(data.data)
-                        ? data.data
-                        : [];
+                        ? data.events
+                        : Array.isArray(data.data)
+                            ? data.data
+                            : [];
 
                 // Keep only events belonging to the logged-in user.
                 const userEvents = eventList.filter(
@@ -191,7 +193,7 @@ const ManageEventsData = () => {
                     </div>
 
                     <Link
-                        href="/events/create"
+                        href="/events/create-event"
                         className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#FF7900] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-[#e86e00] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#FF7900]/30"
                     >
                         <Plus className="h-5 w-5" />
@@ -280,7 +282,7 @@ const ManageEventsData = () => {
                         </p>
 
                         <Link
-                            href="/events/create"
+                            href="/events/create-event"
                             className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#FF7900] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e86e00]"
                         >
                             <Plus className="h-4 w-4" />
@@ -341,12 +343,8 @@ const ManageEventsData = () => {
                                         </p>
                                     </div>
 
-                                    <p className="mt-4 line-clamp-2 text-sm leading-6 text-slate-500">
-                                        {event.description}
-                                    </p>
-
                                     {/* Card actions */}
-                                    <div className="mt-auto grid grid-cols-3 gap-2 border-t border-slate-100 pt-5 mt-5">
+                                    <div className="grid grid-cols-3 gap-2 justify-between items-center border-t border-slate-100 pt-5 mt-5">
                                         <Link
                                             href={`/events/${event._id}`}
                                             className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-[#073763] px-2 py-2.5 text-xs font-semibold text-white transition hover:bg-[#05294a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#073763] focus-visible:ring-offset-2 sm:text-sm"
@@ -355,27 +353,18 @@ const ManageEventsData = () => {
                                             <span>View</span>
                                         </Link>
 
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                toast("Edit functionality coming soon.")
-                                            }
-                                            className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2 py-2.5 text-xs font-semibold text-slate-700 transition hover:border-[#FF7900]/40 hover:bg-orange-50 hover:text-[#e86e00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7900] focus-visible:ring-offset-2 sm:text-sm"
-                                        >
-                                            <Edit3 className="h-4 w-4 shrink-0" />
-                                            <span>Edit</span>
-                                        </button>
+                                        <div>
+                                            <EditEventDialog
+                                                key={event._id}
+                                                event={event}
+                                            />
+                                        </div>
 
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                toast("Delete functionality coming soon.")
-                                            }
-                                            className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg border border-red-100 bg-white px-2 py-2.5 text-xs font-semibold text-red-600 transition hover:border-red-200 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 sm:text-sm"
-                                        >
-                                            <Trash2 className="h-4 w-4 shrink-0" />
-                                            <span>Delete</span>
-                                        </button>
+                                        <div>
+                                            <DeleteEventAlert
+                                                _id={event._id}
+                                            /> </div>
+
                                     </div>
                                 </div>
                             </article>
@@ -388,68 +377,3 @@ const ManageEventsData = () => {
 };
 
 export default ManageEventsData;
-
-
-
-
-
-
-
-
-
-
-// "use client";
-
-// import { authClient } from "@/lib/auth-client";
-// import Link from "next/link";
-// import { Button } from "../ui/button";
-
-// const API_BASE_URL = `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}`;
-
-// const getUserEvents = async (userEmail: string | undefined) => {
-//     if (!userEmail) {
-//         return [];
-//     } 
-//     const response = await fetch(`${API_BASE_URL}/events/${userEmail}`, {
-//         method: "GET",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//     });
-//     const events = await response.json();
-//     return events;
-// }
-
-// const ManageEventsData = () => {
-//     const { data: session, isPending } = authClient.useSession();
-//     const user = session?.user;
-    
-//     if (isPending) {
-//         return <p>Loading user information...</p>;
-//     }
-
-//     const userEvents = getUserEvents(user?.email);
-//     console.log("User Events:", userEvents);
-
-//     return (
-//         <div>
-//             <div>
-//                 <span>Eyebrow text for the page</span>
-//                 <h2 className="text-2xl font-bold mb-4">Manage Your Events</h2>
-//                 <p className="mb-4">Here you can manage your events. You can create new events, edit existing ones, and view event details.</p>
-//                 <Link href="/events/create">
-//                     <Button>Create New Event</Button>
-//                 </Link>
-//             </div>
-//             <div>
-//                 <h3 className="text-xl font-semibold mb-2">Your Events</h3>
-//                 <p className="mb-4">Below is a list of events you have created. You can edit or view details for each event.</p>
-//                 <div>
-//                     Event grid
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default ManageEventsData;
