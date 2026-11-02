@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -18,6 +17,8 @@ import {
 import { toast } from "react-hot-toast";
 import EditEventDialog from "./EditEventDialog";
 import DeleteEventAlert from "./DeleteEventAlert";
+
+import { IEventType } from "@/type/type";
 
 const API_BASE_URL =
     process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL;
@@ -51,9 +52,19 @@ const ManageEventsData = () => {
     const { data: session, isPending } = authClient.useSession();
     const userEmail = session?.user?.email;
 
-    const [events, setEvents] = useState<EventItem[]>([]);
+    const [events, setEvents] = useState<IEventType[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState("");
+
+    function handleEventUpdated(updatedEvent: IEventType) {
+        setEvents((currentEvents) =>
+            currentEvents.map((event) =>
+                event._id === updatedEvent._id
+                    ? updatedEvent
+                    : event
+            )
+        );
+    }
 
     useEffect(() => {
         if (isPending) return;
@@ -355,8 +366,8 @@ const ManageEventsData = () => {
 
                                         <div>
                                             <EditEventDialog
-                                                key={event._id}
                                                 event={event}
+                                                onUpdated={handleEventUpdated}
                                             />
                                         </div>
 

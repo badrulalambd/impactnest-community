@@ -1,7 +1,7 @@
 
 "use client";
 
-import {  useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import {
     ArrowLeft,
     CalendarDays,
@@ -26,6 +26,7 @@ const eventTypes = [
     "Cultural",
     "Sports",
     "Relief",
+    "Other",
 ];
 
 type EventFormData = {
