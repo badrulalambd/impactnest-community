@@ -43,6 +43,7 @@ import { LuCirclePlus } from "react-icons/lu";
 import { MdOutlineSettings } from "react-icons/md";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useState } from "react";
+import { jwtAuthClient } from "@/lib/jwt-auth-client";
 
 const NAV_LINKS = [
   {
