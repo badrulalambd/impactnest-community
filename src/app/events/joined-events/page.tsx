@@ -109,7 +109,7 @@ const JoinedEventsPage = async () => {
     }
 
     const res = await fetch(
-      `${API_BASE_URL}/joinedevents/${encodeURIComponent(user.email)}`,
+      `${API_BASE_URL}/joinedevents/${(user?.email)}`,
       {
         method: "GET",
         cache: "no-store",
@@ -124,6 +124,8 @@ const JoinedEventsPage = async () => {
     }
 
     joinedEvents = await res.json();
+    console.log("Server Response for JoinedEvents: ", joinedEvents);
+    
   } catch (error) {
     console.error("Error fetching joined events:", error);
     fetchFailed = true;

@@ -13,6 +13,7 @@ import {
   FaLinkedinIn,
   FaGithub,
 } from "react-icons/fa";
+import Image from "next/image";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -21,7 +22,6 @@ const Footer = () => {
     { label: "Home", href: "/" },
     { label: "All Events", href: "/events" },
     { label: "Upcoming Events", href: "/events" },
-    { label: "Community Gallery", href: "/events" },
   ];
 
   const communityLinks = [
@@ -71,16 +71,15 @@ const Footer = () => {
           {/* Brand and social links */}
           <div className="lg:col-span-4">
             <Link href="/" className="inline-flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FF7900] shadow-lg shadow-orange-950/20">
-                <Heart
-                  size={25}
-                  strokeWidth={2.5}
-                  className="fill-white text-white"
-                />
-              </span>
 
+              <Image
+                src="/small-logo.png"
+                width={70}
+                height={70}
+                alt="FooterLogo"
+              />
               <span className="text-2xl font-extrabold tracking-tight">
-                Community<span className="text-[#FF7900]">Hub</span>
+                Impact<span className="text-[#FF7900]">Nest</span>
               </span>
             </Link>
 
@@ -89,24 +88,6 @@ const Footer = () => {
               community events, connect with passionate people, and turn
               meaningful ideas into real-world impact.
             </p>
-
-            <div className="mt-6 space-y-3">
-              <a
-                href="mailto:hello@example.com"
-                className="group inline-flex items-center gap-3 text-sm text-slate-300 transition-colors hover:text-white"
-              >
-                <Mail
-                  size={17}
-                  className="text-[#FF7900]"
-                />
-                hello@example.com
-              </a>
-
-              <p className="flex items-center gap-3 text-sm text-slate-300">
-                <MapPin size={17} className="text-[#FF7900]" />
-                Building stronger communities together
-              </p>
-            </div>
 
             {/* Social media icons */}
             <div className="mt-7">
