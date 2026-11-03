@@ -29,7 +29,7 @@ const API_BASE_URL =
     process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL;
 
 const EVENT_TYPES = [
-    "Community Development",
+    "Social Development",
     "Health & Blood Donation",
     "Skills & Career",
     "Cultural",

@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 const eventTypes = [
-    "Community Development",
+    "Social Development",
     "Health & Blood Donation",
     "Skills & Career",
     "Cultural",

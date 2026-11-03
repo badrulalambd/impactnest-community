@@ -19,12 +19,13 @@ import type { IEventType } from "@/type/type";
 
 const categories = [
   "All",
-  "Community Development",
+  "Social Development",
   "Health & Blood Donation",
   "Skills & Career",
   "Cultural",
   "Sports",
   "Relief",
+  "Other"
 ] as const;
 
 type Category = (typeof categories)[number];
