@@ -46,7 +46,7 @@ function getLocalDate(): string {
 
 // Provide a stable subscription for a client-derived value.
 function subscribeToNothing(): () => void {
-  return () => {};
+  return () => { };
 }
 
 // Keep the server-rendered and initial hydration snapshots consistent.
@@ -77,16 +77,18 @@ export default function EventsExplorer({
   const upcomingEvents = useMemo(() => {
     if (!today) return [];
 
-    return events.filter((event) => {
-      const eventDate = event.date;
+    return events
+      .filter((event) => {
+        const eventDate = event.date;
 
-      // Expect dates in YYYY-MM-DD format.
-      return (
-        typeof eventDate === "string" &&
-        /^\d{4}-\d{2}-\d{2}$/.test(eventDate) &&
-        eventDate >= today
-      );
-    });
+        // Expect dates in YYYY-MM-DD format.
+        return (
+          typeof eventDate === "string" &&
+          /^\d{4}-\d{2}-\d{2}$/.test(eventDate) &&
+          eventDate >= today
+        );
+      })
+      .sort((a, b) => a.date.localeCompare(b.date));
   }, [events, today]);
 
   const filteredEvents = useMemo(() => {
@@ -237,20 +239,18 @@ export default function EventsExplorer({
                   type="button"
                   onClick={() => setActiveCategory(category)}
                   aria-pressed={isActive}
-                  className={`inline-flex shrink-0 items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium transition ${
-                    isActive
+                  className={`inline-flex shrink-0 items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium transition ${isActive
                       ? "border-[#073763] bg-[#073763] text-white shadow-sm"
                       : "border-slate-200 bg-white text-slate-600 hover:border-[#073763]/30 hover:bg-slate-50 hover:text-[#073763]"
-                  }`}
+                    }`}
                 >
                   {category}
 
                   <span
-                    className={`rounded-md px-1.5 py-0.5 text-xs ${
-                      isActive
+                    className={`rounded-md px-1.5 py-0.5 text-xs ${isActive
                         ? "bg-white/15 text-white"
                         : "bg-slate-100 text-slate-500"
-                    }`}
+                      }`}
                   >
                     {categoryCount(category)}
                   </span>
@@ -271,11 +271,10 @@ export default function EventsExplorer({
               onChange={(event) =>
                 setSearchQuery(event.target.value)
               }
-              placeholder={`Search ${
-                activeCategory === "All"
+              placeholder={`Search ${activeCategory === "All"
                   ? "all events"
                   : activeCategory.toLowerCase()
-              }...`}
+                }...`}
               aria-label="Search events"
               className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-12 pr-11 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-[#073763] focus:ring-4 focus:ring-[#073763]/10"
             />

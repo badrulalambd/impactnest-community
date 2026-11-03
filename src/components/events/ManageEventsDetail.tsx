@@ -7,14 +7,11 @@ import {
     ArrowRight,
     CalendarDays,
     Clock3,
-    Edit3,
     Eye,
     MapPin,
     Plus,
-    Trash2,
     Users,
 } from "lucide-react";
-import { toast } from "react-hot-toast";
 import EditEventDialog from "./EditEventDialog";
 import DeleteEventAlert from "./DeleteEventAlert";
 
@@ -119,7 +116,7 @@ const ManageEventsData = () => {
                         userEmail!.toLowerCase()
                 );
 
-                setEvents(userEvents);
+                setEvents(userEvents.sort((a, b) => a.date.localeCompare(b.date)));
             } catch (err) {
                 if (err instanceof Error && err.name === "AbortError") {
                     return;
