@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, type FormEvent } from "react";
@@ -18,6 +17,7 @@ import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { getTokenFromClient } from "@/lib/getTokenClient";
 
 const eventTypes = [
     "Social Development",
@@ -110,6 +110,7 @@ export default function CreateEventForm() {
         const newEventData = Object.fromEntries(fData.entries());
         console.log("NewEvent Data: ", newEventData);
 
+        const token = await getTokenFromClient();
         try {
             // Replace this with your actual backend API request.
             console.log("EventFormData before Posting:", formData);
@@ -118,7 +119,7 @@ export default function CreateEventForm() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    // authorization: `Bearer ${token}`,
+                    authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(newEventData),
             });

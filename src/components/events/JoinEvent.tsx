@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { CheckCircle2, LoaderCircle, Users } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { getTokenFromClient } from "@/lib/getTokenClient";
 
 interface JoinEventProps {
   eventDetail: IEventType;
@@ -41,12 +42,14 @@ const JoinEvent = ({ eventDetail }: JoinEventProps) => {
         ...eventDetail,
       };
 
+      const token = await getTokenFromClient();
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/joinedevents`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(joiningData),
         }

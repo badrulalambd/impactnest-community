@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import JoinEvent from "@/components/events/JoinEvent";
+import { getTokenFromServer } from "@/lib/getTokensServer";
 
 type Props = {
   params: Promise<{ eventId: string }>;
@@ -42,12 +43,16 @@ const EventDetailPage = async ({ params }: Props) => {
 
   let eventDetail: EventDetail;
 
+  const token = await getTokenFromServer();
   try {
     const res = await fetch(
       `${apiBaseUrl}/events/single/${encodeURIComponent(eventId)}`,
       {
         method: "GET",
         cache: "no-store",
+        headers: {
+          authorization: `Bearer ${token}`
+        }
       }
     );
 

@@ -16,6 +16,7 @@ import EditEventDialog from "./EditEventDialog";
 import DeleteEventAlert from "./DeleteEventAlert";
 
 import { IEventType } from "@/type/type";
+import { getTokenFromClient } from "@/lib/getTokenClient";
 
 const API_BASE_URL =
     process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL;
@@ -83,14 +84,15 @@ const ManageEventsData = () => {
                     throw new Error("The API URL is not configured.");
                 }
 
+                const token = await getTokenFromClient();
                 const response = await fetch(
                     `${API_BASE_URL}/events/${encodeURIComponent(userEmail!)}`,
                     {
+                        cache: "no-store",
                         method: "GET",
                         headers: {
-                            "Content-Type": "application/json",
+                            authorization: `Bearer ${token}`
                         },
-                        cache: "no-store",
                         signal: controller.signal,
                     }
                 );

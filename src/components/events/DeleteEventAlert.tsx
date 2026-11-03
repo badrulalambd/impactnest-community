@@ -17,6 +17,7 @@ import {
 import { Button } from "../ui/button";
 import { Trash2 } from "lucide-react";
 import { toast } from "react-hot-toast";
+import { getTokenFromClient } from "@/lib/getTokenClient";
 
 const DeleteEventAlert = ({ _id }: { _id: string }) => {
     const router = useRouter();
@@ -29,11 +30,16 @@ const DeleteEventAlert = ({ _id }: { _id: string }) => {
 
         setIsDeleting(true);
 
+        const token = await getTokenFromClient();
         try {
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/events/single/${_id}`,
                 {
+                    cache: "no-cache",
                     method: "DELETE",
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
                 }
             );
 

@@ -1,46 +1,3 @@
-
-// import { auth } from "@/lib/auth";
-// import { headers } from "next/headers";
-
-// const JoinedEventsPage = async () => {
-
-//     const session = await auth.api.getSession({
-//         headers: await headers(),
-//     });
-//     const user = session?.user;
-
-//     const logingEmail = user?.email;
-//     console.log("UserEmail in JoinedEventPage: ", logingEmail);
-
-//     const res = await fetch(`${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/joinedevents/${logingEmail}`, {
-//         method: "GET",
-//     });
-//     const joinedUserData = await res.json();
-//     console.log("Server Response for JoinedUserEvent: ", joinedUserData);
-//     const {userEmail, title, type, date, location, imageUrl, description, email} = joinedUserData;
-
-//     return (
-//         <div>
-//             <p>Logged in user email: {userEmail}</p>
-//             <p>{title}</p>
-//             <p>{type}</p>
-//             <p>{date}</p>
-//             <p>{location}</p>
-//             <p>{imageUrl}</p>
-//             <p>{description}</p>
-//             <p>Organizer email: {email}</p>
-//         </div>
-//     );
-// };
-
-// export default JoinedEventsPage;
-
-
-
-
-
-
-
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
@@ -54,6 +11,7 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
+import { getTokenFromServer } from "@/lib/getTokensServer";
 
 interface JoinedEvent {
   _id: string;
@@ -144,6 +102,7 @@ const JoinedEventsPage = async () => {
   let joinedEvents: JoinedEvent[] = [];
   let fetchFailed = false;
 
+  const token = await getTokenFromServer();
   try {
     if (!API_BASE_URL) {
       throw new Error("API base URL is not configured.");
@@ -154,6 +113,9 @@ const JoinedEventsPage = async () => {
       {
         method: "GET",
         cache: "no-store",
+        headers: {
+          authorization: `Bearer ${token}`
+        },
       }
     );
 

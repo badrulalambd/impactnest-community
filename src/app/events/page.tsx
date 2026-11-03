@@ -1,11 +1,13 @@
 
 import EventsExplorer from "@/components/events/EventsExplorer";
+import { getTokenFromServer } from "@/lib/getTokensServer";
 import { IEventType } from "@/type/type";
 
 const EventsPage = async () => {
   let events: IEventType[] = [];
   let hasError = false;
 
+   const token = await getTokenFromServer();
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/events`,
@@ -13,8 +15,8 @@ const EventsPage = async () => {
         method: "GET",
         cache: "no-store",
         headers: {
-          "Content-Type": "application/json",
-        },
+          authorization: `Bearer ${token}`,
+        }
       }
     );
 

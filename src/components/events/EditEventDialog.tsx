@@ -19,6 +19,7 @@ import {
     LoaderCircle,
 } from "lucide-react";
 import toast from "react-hot-toast";
+import { getTokenFromClient } from "@/lib/getTokenClient";
 
 interface EditEventDialogProps {
     event: IEventType;
@@ -157,12 +158,14 @@ const EditEventDialog = ({
         setIsUpdating(true);
 
         try {
+            const token = await getTokenFromClient();
             const response = await fetch(
                 `${API_BASE_URL}/events/${encodeURIComponent(event._id)}`,
                 {
                     method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
+                        authorization: `Bearer ${token}`,
                     },
                     body: JSON.stringify(formData),
                 }
