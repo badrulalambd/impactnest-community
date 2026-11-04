@@ -46,6 +46,7 @@ const JoinEvent = ({ eventDetail }: JoinEventProps) => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/joinedevents`,
         {
+          cache: "no-cache",
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -56,6 +57,7 @@ const JoinEvent = ({ eventDetail }: JoinEventProps) => {
       );
 
       const resData = await res.json();
+      console.log("ServerResponse for joinedData: ", resData);
 
       if (res.ok && (resData.insertedId || resData.result?.insertedId)) {
         setIsJoined(true);
@@ -71,7 +73,7 @@ const JoinEvent = ({ eventDetail }: JoinEventProps) => {
       }
     } catch (error) {
       console.error("Error joining event:", error);
-      toast.error("Something went wrong. Please try again.");
+      toast.error("Already joined this Event");
     } finally {
       setIsJoining(false);
     }
