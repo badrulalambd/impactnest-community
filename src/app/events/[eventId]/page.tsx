@@ -393,7 +393,8 @@ const EventDetailPage = async ({ params }: Props) => {
                 </div>
 
                 {isUpcoming ? (
-                  <JoinEvent eventDetail={eventDetail} />
+                  // <JoinEvent eventDetail={eventDetail} />
+                  <JoinEvent/>
                 ) : (
                   <p className="rounded-xl bg-slate-100 px-4 py-3 text-center text-sm font-semibold text-slate-500">
                     This event has already taken place.
