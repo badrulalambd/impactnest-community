@@ -17,13 +17,14 @@ import { getTokenFromServer } from "@/lib/getTokensServer";
 interface JoinedEvent {
   _id: string;
   userEmail: string;
+  eventId: string;
   title: string;
   type: string;
   date: string;
   location: string;
   imageUrl: string;
   description: string;
-  email: string;
+  orgazinerEmail: string;
 }
 
 const API_BASE_URL =
@@ -109,8 +110,7 @@ const JoinedEventsPage = async () => {
       throw new Error("API base URL is not configured.");
     }
 
-    const res = await fetch(
-      `${API_BASE_URL}/joinedevents/${(user?.email)}`,
+    const res = await fetch(`${API_BASE_URL}/joinedevents/${(user?.email)}`,
       {
         method: "GET",
         cache: "no-store",
@@ -287,7 +287,7 @@ const JoinedEventsPage = async () => {
             </p>
 
             <Link
-              href="/upcoming-events"
+              href="/events"
               className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#FF7900] px-6 py-3.5 font-bold text-white transition hover:bg-[#073763]"
             >
               Discover Events
@@ -376,7 +376,7 @@ const JoinedEventsPage = async () => {
                       <div className="mb-4 h-px bg-slate-100" />
 
                       <Link
-                        href={`/events/${event._id}`}
+                        href={`/events/${event.eventId}`}
                         className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#073763] px-5 py-3.5 text-sm font-bold text-white transition duration-300 hover:bg-[#FF7900] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7900] focus-visible:ring-offset-2"
                       >
                         View Detail

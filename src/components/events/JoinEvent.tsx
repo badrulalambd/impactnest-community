@@ -38,7 +38,14 @@ const JoinEvent = ({ eventDetail }: JoinEventProps) => {
     try {
       const joiningData = {
         userEmail: user.email,
-        ...eventDetail,
+        eventId: eventDetail._id,
+        title: eventDetail.title,
+        type: eventDetail.type,
+        date: eventDetail.date,
+        location: eventDetail.location,
+        imageUrl: eventDetail.imageUrl,
+        description: eventDetail.description,
+        organizerEmail: eventDetail.email,
       };
 
       const token = await getTokenFromClient();
@@ -63,16 +70,16 @@ const JoinEvent = ({ eventDetail }: JoinEventProps) => {
         toast.success("You have successfully joined the event!");
       } else if (
         res.status === 409 ||
-        resData.message === "You have already joined this event."
+        resData.message === "Already joined!"
       ) {
         setIsJoined(true);
-        toast.success("You have already joined this event!");
+        toast.success("Already joined!");
       } else {
         toast.error(resData.message || "Unable to join this event. Please try again.");
       }
     } catch (error) {
       console.error("Error joining event:", error);
-      toast.error("Already joined this Event");
+      toast.error("Something went wrong");
     } finally {
       setIsJoining(false);
     }
