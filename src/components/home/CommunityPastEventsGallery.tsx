@@ -1,5 +1,4 @@
 
-import { getTokenFromServer } from "@/lib/getTokensServer";
 import { CalendarDays, MapPin } from "lucide-react";
 
 interface EventType {
@@ -13,14 +12,14 @@ interface EventType {
 }
 
 const CommunityPastEventsGallery = async () => {
-    const token = await getTokenFromServer();
+    // const token = await getTokenFromServer();
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/pastevents`,
         {
             method: "GET",
             cache: "no-store",
             headers: {
-                authorization: `Bearer ${token}`
+                // authorization: `Bearer ${token}`
             }
         }
     );

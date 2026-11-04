@@ -1,22 +1,16 @@
 
 import EventsExplorer from "@/components/events/EventsExplorer";
-import { getTokenFromServer } from "@/lib/getTokensServer";
 import { IEventType } from "@/type/type";
 
+export const dynamic = "force-dynamic";
 const EventsPage = async () => {
   let events: IEventType[] = [];
   let hasError = false;
-
-   const token = await getTokenFromServer();
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/events`,
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/events`,
       {
         method: "GET",
         cache: "no-store",
-        headers: {
-          authorization: `Bearer ${token}`,
-        }
       }
     );
 

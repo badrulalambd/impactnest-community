@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 
 import JoinEvent from "@/components/events/JoinEvent";
-import { getTokenFromServer } from "@/lib/getTokensServer";
 
 type Props = {
   params: Promise<{ eventId: string }>;
@@ -43,7 +42,7 @@ const EventDetailPage = async ({ params }: Props) => {
 
   let eventDetail: EventDetail;
 
-  const token = await getTokenFromServer();
+  // const token = await getTokenFromServer();
   try {
     const res = await fetch(
       `${apiBaseUrl}/events/single/${encodeURIComponent(eventId)}`,
@@ -51,7 +50,7 @@ const EventDetailPage = async ({ params }: Props) => {
         method: "GET",
         cache: "no-store",
         headers: {
-          authorization: `Bearer ${token}`
+          // Authorization: `Bearer ${token}`
         }
       }
     );
@@ -393,8 +392,7 @@ const EventDetailPage = async ({ params }: Props) => {
                 </div>
 
                 {isUpcoming ? (
-                  // <JoinEvent eventDetail={eventDetail} />
-                  <JoinEvent/>
+                  <JoinEvent eventDetail={eventDetail} />
                 ) : (
                   <p className="rounded-xl bg-slate-100 px-4 py-3 text-center text-sm font-semibold text-slate-500">
                     This event has already taken place.

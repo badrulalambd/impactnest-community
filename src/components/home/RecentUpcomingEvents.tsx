@@ -5,7 +5,6 @@ import {
     MapPin,
     MoveUpRight,
 } from "lucide-react";
-import { getTokenFromServer } from "@/lib/getTokensServer";
 
 interface EventType {
     _id: string;
@@ -18,14 +17,14 @@ interface EventType {
 }
 
 const RecentUpcomingEvents = async () => {
-    const token = await getTokenFromServer();
+    // const token = await getTokenFromServer();
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/recentevents`,
         {
             method: "GET",
             cache: "no-store",
             headers: {
-                authorization: `Bearer ${token}`
+                // authorization: `Bearer ${token}`
             },
         }
     );
