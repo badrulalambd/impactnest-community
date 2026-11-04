@@ -1,6 +1,8 @@
 
 import { CalendarDays, MapPin } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 interface EventType {
     _id: string;
     title: string;
@@ -13,22 +15,31 @@ interface EventType {
 
 const CommunityPastEventsGallery = async () => {
     // const token = await getTokenFromServer();
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/pastevents`,
-        {
-            method: "GET",
-            cache: "no-store",
-            headers: {
-                // authorization: `Bearer ${token}`
+
+    let pastEvents: EventType[] = [];
+    let fetchFailed = false;
+
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/pastevents`,
+            {
+                method: "GET",
+                cache: "no-store",
+                headers: {
+                    // authorization: `Bearer ${token}`
+                }
             }
+        );
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch past events.");
         }
-    );
 
-    if (!res.ok) {
-        throw new Error("Failed to fetch past events.");
+        pastEvents = await res.json();
+    } catch (error) {
+        console.error("Failed to load past events:", error);
+        fetchFailed = true;
     }
-
-    const pastEvents: EventType[] = await res.json();
 
     const formatEventDate = (date: string) => {
         const parsedDate = new Date(`${date}T00:00:00`);
@@ -62,18 +73,27 @@ const CommunityPastEventsGallery = async () => {
                 </div>
 
                 {/* Gallery Grid */}
-                {pastEvents.length > 0 ? (
+                {fetchFailed ? (
+                    <div className="rounded-2xl border border-red-200 bg-white px-6 py-16 text-center">
+                        <h3 className="text-lg font-semibold text-[#073763]">
+                            We couldn&apos;t load the gallery data
+                        </h3>
+
+                        <p className="mt-2 text-sm text-slate-500">
+                            Please check your connection and try again.
+                        </p>
+                    </div>
+                ) : pastEvents.length > 0 ? (
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                         {pastEvents.map((event, index) => (
                             <article
                                 key={event._id}
-                                className={`group relative isolate overflow-hidden rounded-2xl bg-slate-200 ${
-                                    index % 5 === 0
+                                className={`group relative isolate overflow-hidden rounded-2xl bg-slate-200 ${index % 5 === 0
                                         ? "min-h-[420px] sm:row-span-2 sm:min-h-[600px]"
                                         : index % 5 === 2
-                                          ? "min-h-[340px]"
-                                          : "min-h-[280px]"
-                                }`}
+                                            ? "min-h-[340px]"
+                                            : "min-h-[280px]"
+                                    }`}
                             >
                                 {/* Background Image */}
                                 {event.imageUrl && (
@@ -116,7 +136,7 @@ const CommunityPastEventsGallery = async () => {
 
                                     <div className="mt-4 flex items-center justify-between border-t border-white/20 pt-4">
                                         <span className="text-xs font-medium text-white/75">
-                                            Different community service events 
+                                            Different community service events
                                         </span>
 
                                     </div>

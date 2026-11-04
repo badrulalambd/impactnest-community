@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import {
     ArrowRight,
@@ -5,6 +6,8 @@ import {
     MapPin,
     MoveUpRight,
 } from "lucide-react";
+
+export const dynamic = "force-dynamic";
 
 interface EventType {
     _id: string;
@@ -18,22 +21,31 @@ interface EventType {
 
 const RecentUpcomingEvents = async () => {
     // const token = await getTokenFromServer();
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/recentevents`,
-        {
-            method: "GET",
-            cache: "no-store",
-            headers: {
-                // authorization: `Bearer ${token}`
-            },
+
+    let recentSixEvents: EventType[] = [];
+    let fetchFailed = false;
+
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_DESTINATIONS_API_BASE_URL}/recentevents`,
+            {
+                method: "GET",
+                cache: "no-store",
+                headers: {
+                    // authorization: `Bearer ${token}`
+                },
+            }
+        );
+
+        if (!res.ok) {
+            throw new Error("Failed to fetch recent events.");
         }
-    );
 
-    if (!res.ok) {
-        throw new Error("Failed to fetch recent events.");
+        recentSixEvents = await res.json();
+    } catch (error) {
+        console.error("Failed to load recent events:", error);
+        fetchFailed = true;
     }
-
-    const recentSixEvents: EventType[] = await res.json();
 
     const formatEventDate = (date: string) => {
         const parsedDate = new Date(`${date}T00:00:00`);
@@ -78,7 +90,17 @@ const RecentUpcomingEvents = async () => {
                 </div>
 
                 {/* Events Grid */}
-                {recentSixEvents.length > 0 ? (
+                {fetchFailed ? (
+                    <div className="rounded-2xl border border-red-200 bg-white px-6 py-16 text-center">
+                        <h3 className="text-lg font-semibold text-[#073763]">
+                            We couldn&apos;t load the recent events data
+                        </h3>
+
+                        <p className="mt-2 text-sm text-slate-500">
+                            Please check your connection and try again.
+                        </p>
+                    </div>
+                ) : recentSixEvents.length > 0 ? (
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                         {recentSixEvents.map((event) => (
                             <article

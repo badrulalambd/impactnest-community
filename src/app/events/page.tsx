@@ -3,6 +3,7 @@ import EventsExplorer from "@/components/events/EventsExplorer";
 import { IEventType } from "@/type/type";
 
 export const dynamic = "force-dynamic";
+
 const EventsPage = async () => {
   let events: IEventType[] = [];
   let hasError = false;

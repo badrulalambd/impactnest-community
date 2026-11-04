@@ -144,7 +144,7 @@ export default function CreateEventForm() {
             <div className="mx-auto max-w-3xl">
                 {/* Back to Upcoming Events */}
                 <Link
-                    href="/upcoming-events"
+                    href="/events"
                     className="mb-6 inline-flex items-center gap-2 rounded-lg text-sm font-medium text-brand-navy transition-colors hover:text-[#FF7900] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#073763] focus-visible:ring-offset-4"
                 >
                     <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
@@ -361,11 +361,6 @@ export default function CreateEventForm() {
                                 <CalendarDays className="h-4 w-4" />
                             )}
                         </button>
-
-                        <p className="mt-3 text-xs leading-5 text-slate-400">
-                            Fields marked with <span className="text-brand-orange">*</span>{" "}
-                            are required.
-                        </p>
                     </div>
                 </form>
             </div>
