@@ -1,21 +1,7 @@
 
 # 🌱 ImpactNest — Community Event Platform
 
-A full-stack community event platform built with **Next.js, Express.js, MongoDB, and Better Auth**. ImpactNest enables people to discover community events, organize social initiatives, and participate in activities that create positive social impact.
-
-<p align="center">
-  <a href="https://impactnest-community.vercel.app">
-    <img src="https://img.shields.io/badge/Live%20Website-Visit%20ImpactNest-16A34A?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Website" />
-  </a>
-  <a href="https://github.com/badrulalambd/impactnest-community">
-    <img src="https://img.shields.io/badge/Frontend-GitHub-181717?style=for-the-badge&logo=github" alt="Frontend Repository" />
-  </a>
-  <a href="https://github.com/badrulalambd/impactnest-community-server">
-    <img src="https://img.shields.io/badge/Backend-GitHub-181717?style=for-the-badge&logo=github" alt="Backend Repository" />
-  </a>
-</p>
-
-## 📌 About the Project
+**Connect People. Organize Initiatives. Create Positive Impact.**
 
 **ImpactNest** is a full-stack community event platform designed to bring people together through meaningful social activities. It provides a centralized space where users can explore community events, create and manage their own initiatives, and participate in activities that contribute to positive social change.
 
@@ -27,10 +13,9 @@ From donation drives and community cleanups to tree plantation programs and wint
 - **Frontend Repository:** [impactnest-community](https://github.com/badrulalambd/impactnest-community)
 - **Backend Repository:** [impactnest-community-server](https://github.com/badrulalambd/impactnest-community-server)
 
-## 📸 Application Screenshot
+## 📸 Application Preview
 
-<!-- Add your application screenshot below -->
-
+<img width="1000" height="700" alt="ImpactNest-SS" src="https://github.com/user-attachments/assets/276e21c3-aa95-4362-8e3b-f6f9721cda64" />
 
 
 ## 🛠️ Technology Stack
@@ -45,7 +30,7 @@ From donation drives and community cleanups to tree plantation programs and wint
 - **React** – Component-based user interface development.
 - **TypeScript & JavaScript** – Application development and type safety.
 - **Tailwind CSS** – Utility-first styling and responsive layouts.
-- **Hero UI / DaisyUI / shadcn/ui** – UI component libraries.
+- **shadcn/ui** – UI component design libraries.
 - **Base UI** – Accessible and reusable interface primitives.
 
 ### Authentication & Authorization
@@ -53,7 +38,7 @@ From donation drives and community cleanups to tree plantation programs and wint
 - **Better Auth** – Email/password authentication, registration, login, and session management.
 - **Google OAuth** – Social login using Google accounts.
 - **MongoDB Adapter** – Database integration for Better Auth.
-- **JWT** – Token-based authentication and authorization.
+- **JWT** – Token-based authentication and authorization for protected backend operations with middleware.
 
 ### Backend Development
 
@@ -78,15 +63,15 @@ From donation drives and community cleanups to tree plantation programs and wint
 
 ImpactNest provides essential tools for discovering, organizing, and participating in community-driven initiatives.
 
-- **🌍 Discover Community Events:** Guests and registered users can explore the Home, Events, and Event Details pages without signing in. Discover available activities and find opportunities to participate in meaningful social initiatives.
+**🌍 Discover Community Events:** Guests and registered users can explore the Home, Events, and Event Details pages without signing in. Discover available activities and find opportunities to participate in meaningful social initiatives.
 
-- **🔐 Secure Authentication:** Register and log in using email and password through Better Auth. The platform also supports Google social login for convenient and secure authentication.
+**🔐 Secure Authentication:** Register and log in using email and password through Better Auth. The platform also supports Google social login for convenient and secure authentication.
 
-- **➕ Create & Publish Events:** Authenticated users can create and publish community events with relevant information to encourage others to participate in their initiatives.
+**➕ Create & Publish Events:** Authenticated users can create and publish community events with relevant information to encourage others to participate in their initiatives.
 
-- **📋 Manage Your Events:** Logged-in users can access the Manage Events page to view and manage the events they have created.
+**📋 Manage Your Events:** Logged-in users can access the Manage Events page to view and manage the events they have created.
 
-- **🤝 Join Events & Track Participation:** Authenticated users can join events from the Event Details page and access the Joined Events page to view and manage their participation.
+**🤝 Join Events & Track Participation:** Authenticated users can join events from the Event Details page and access the Joined Events page to view and manage their participation.
 
 ## 🔒 Page Access & Authentication
 
@@ -200,10 +185,10 @@ MONGODB_PASSWORD=your_mongodb_password
 
 ### 5. Start the Backend Server
 
-Navigate to the backend project directory and run the development command configured in its `package.json`.
+Navigate to the backend project directory and start the Express server using Node.js.
 
 ```bash
-npm run dev
+node index.js
 ```
 
 Ensure the backend server is running at:
