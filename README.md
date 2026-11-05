@@ -1,36 +1,249 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🌱 ImpactNest — Community Event Platform
 
-First, run the development server:
+A full-stack community event platform built with **Next.js, Express.js, MongoDB, and Better Auth**. ImpactNest enables people to discover community events, organize social initiatives, and participate in activities that create positive social impact.
+
+<p align="center">
+  <a href="https://impactnest-community.vercel.app">
+    <img src="https://img.shields.io/badge/Live%20Website-Visit%20ImpactNest-16A34A?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Website" />
+  </a>
+  <a href="https://github.com/badrulalambd/impactnest-community">
+    <img src="https://img.shields.io/badge/Frontend-GitHub-181717?style=for-the-badge&logo=github" alt="Frontend Repository" />
+  </a>
+  <a href="https://github.com/badrulalambd/impactnest-community-server">
+    <img src="https://img.shields.io/badge/Backend-GitHub-181717?style=for-the-badge&logo=github" alt="Backend Repository" />
+  </a>
+</p>
+
+## 📌 About the Project
+
+**ImpactNest** is a full-stack community event platform designed to bring people together through meaningful social activities. It provides a centralized space where users can explore community events, create and manage their own initiatives, and participate in activities that contribute to positive social change.
+
+From donation drives and community cleanups to tree plantation programs and winter relief campaigns, ImpactNest makes it easier for individuals to connect, collaborate, and turn good intentions into meaningful action.
+
+### 🔗 Project Links
+
+- **Live Website:** [https://impactnest-community.vercel.app](https://impactnest-community.vercel.app)
+- **Frontend Repository:** [impactnest-community](https://github.com/badrulalambd/impactnest-community)
+- **Backend Repository:** [impactnest-community-server](https://github.com/badrulalambd/impactnest-community-server)
+
+## 📸 Application Screenshot
+
+<!-- Add your application screenshot below -->
+
+
+
+## 🛠️ Technology Stack
+
+### Frontend Development
+
+<p>
+  <img src="https://skillicons.dev/icons?i=nextjs,react,ts,js,tailwind" alt="Frontend Technologies" />
+</p>
+
+- **Next.js (App Router)** – Frontend framework for routing and rendering.
+- **React** – Component-based user interface development.
+- **TypeScript & JavaScript** – Application development and type safety.
+- **Tailwind CSS** – Utility-first styling and responsive layouts.
+- **Hero UI / DaisyUI / shadcn/ui** – UI component libraries.
+- **Base UI** – Accessible and reusable interface primitives.
+
+### Authentication & Authorization
+
+- **Better Auth** – Email/password authentication, registration, login, and session management.
+- **Google OAuth** – Social login using Google accounts.
+- **MongoDB Adapter** – Database integration for Better Auth.
+- **JWT** – Token-based authentication and authorization.
+
+### Backend Development
+
+<p>
+  <img src="https://skillicons.dev/icons?i=nodejs,express,mongodb" alt="Backend Technologies" />
+</p>
+
+- **Node.js** – Server-side JavaScript runtime.
+- **Express.js** – Backend framework for REST API development.
+- **MongoDB** – Database for storing application data.
+- **JavaScript** – Backend application logic and API development.
+
+### Additional Tools & Libraries
+
+- **Lucide React & React Icons** – Icon libraries.
+- **React Hot Toast** – Interactive notifications and user feedback.
+- **next-themes** – Light and dark theme management.
+- **class-variance-authority** – Component style variant management.
+- **dotenv** – Environment variable configuration.
+
+## ✨ Key Features
+
+ImpactNest provides essential tools for discovering, organizing, and participating in community-driven initiatives.
+
+- **🌍 Discover Community Events:** Guests and registered users can explore the Home, Events, and Event Details pages without signing in. Discover available activities and find opportunities to participate in meaningful social initiatives.
+
+- **🔐 Secure Authentication:** Register and log in using email and password through Better Auth. The platform also supports Google social login for convenient and secure authentication.
+
+- **➕ Create & Publish Events:** Authenticated users can create and publish community events with relevant information to encourage others to participate in their initiatives.
+
+- **📋 Manage Your Events:** Logged-in users can access the Manage Events page to view and manage the events they have created.
+
+- **🤝 Join Events & Track Participation:** Authenticated users can join events from the Event Details page and access the Joined Events page to view and manage their participation.
+
+## 🔒 Page Access & Authentication
+
+ImpactNest separates public pages from protected pages to provide an accessible browsing experience while securing user-specific features.
+
+| Page | Access | Description |
+|---|---|---|
+| Home | Public | Explore the platform and discover community initiatives. |
+| Events | Public | Browse available community events. |
+| Event Details | Public | View detailed information about individual events. |
+| Create Event | Private | Create and publish community events. |
+| Manage Events | Private | Manage events created by the logged-in user. |
+| Joined Events | Private | View and manage joined events. |
+| Login | Public | Sign in using email/password or Google. |
+| Register | Public | Create an account using email/password. |
+
+### Authentication Rules
+
+- Guests can explore Home, Events, and Event Details pages without logging in.
+- Users must be authenticated to create and publish events.
+- Only logged-in users can join community events.
+- The Manage Events page is accessible to authenticated users for managing their own events.
+- The Joined Events page is restricted to authenticated users.
+
+## 📦 Dependencies
+
+### Frontend Dependencies
+
+`@base-ui/react`, `@better-auth/mongo-adapter`, `better-auth`, `class-variance-authority`, `cn`, `dotenv`, `lucide-react`, `mongodb`, `next`, `next-themes`, `react`, `react-dom`, `react-hot-toast`, `react-icons`, `shadcn`, `tw-animate-css`
+
+### Frontend Dev Dependencies
+
+`@tailwindcss/turbopack`, `@types/node`, `@types/react`, `@types/react-dom`, `babel-plugin-react-compiler`, `eslint`, `eslint-config-next`, `tailwindcss`, `typescript`
+
+## 🚀 How to Run the Project Locally
+
+Follow these instructions to set up and run both the frontend and backend applications on your local machine.
+
+### Prerequisites
+
+Make sure you have installed:
+
+- [Node.js](https://nodejs.org/)
+- npm
+- [Git](https://git-scm.com/)
+- [MongoDB](https://www.mongodb.com/) database or MongoDB Atlas account
+
+### 1. Clone the Frontend Repository
+
+```bash
+git clone https://github.com/badrulalambd/impactnest-community.git
+cd impactnest-community
+npm install
+```
+
+### 2. Clone the Backend Repository
+
+Open another terminal and run:
+
+```bash
+git clone https://github.com/badrulalambd/impactnest-community-server.git
+cd impactnest-community-server
+npm install
+```
+
+### 3. Configure Frontend Environment Variables
+
+Create a `.env` file in the root directory of the frontend project and add the following variables:
+
+```env
+BETTER_AUTH_SECRET=your_better_auth_secret
+BETTER_AUTH_URL=http://localhost:3000
+NEXT_PUBLIC_DESTINATIONS_API_BASE_URL=http://localhost:5000
+MONGODB_URL=your_mongodb_connection_url
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
+
+**Environment Variable Details:**
+
+| Variable | Description |
+|---|---|
+| `BETTER_AUTH_SECRET` | Secret key used by Better Auth. |
+| `BETTER_AUTH_URL` | Base URL of the frontend application. |
+| `NEXT_PUBLIC_DESTINATIONS_API_BASE_URL` | Base URL of the backend API. |
+| `MONGODB_URL` | MongoDB connection URL. |
+| `GOOGLE_CLIENT_ID` | Google OAuth client ID. |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret. |
+
+Replace the placeholder values with your actual credentials and configuration.
+
+### 4. Configure Backend Environment Variables
+
+Create a `.env` file in the root directory of the backend project:
+
+```env
+CLIENT_URL=http://localhost:3000
+MONGODB_USER=your_mongodb_user
+MONGODB_PASSWORD=your_mongodb_password
+```
+
+**Environment Variable Details:**
+
+| Variable | Description |
+|---|---|
+| `CLIENT_URL` | Frontend application URL used for client/server communication and CORS configuration. |
+| `MONGODB_USER` | MongoDB database username. |
+| `MONGODB_PASSWORD` | MongoDB database password. |
+
+**Important:** Never commit `.env` files containing secrets, OAuth credentials, or database passwords to GitHub.
+
+### 5. Start the Backend Server
+
+Navigate to the backend project directory and run the development command configured in its `package.json`.
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ensure the backend server is running at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:5000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 6. Start the Frontend Application
 
-## Learn More
+Open another terminal, navigate to the frontend project directory, and run:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The Next.js development server will start at:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+http://localhost:3000
+```
 
-## Deploy on Vercel
+### 7. Open the Application
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Visit the following URL in your browser:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**http://localhost:3000**
+
+You can now explore ImpactNest, browse community events, register or log in, and access the authenticated features.
+
+## 👨‍💻 Author
+
+**Badrul Alam**  
+Full-Stack Web Developer
+
+- **Portfolio:** [badrulalam.me](https://badrulalam.me)
+- **GitHub:** [badrulalambd](https://github.com/badrulalambd)
+
+---
+
+<p align="center">
+  <strong>Built to connect communities, inspire collaboration, and create meaningful social impact. 🌍</strong>
+</p>
