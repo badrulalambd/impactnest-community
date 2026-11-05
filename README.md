@@ -1,7 +1,7 @@
 
 # 🌱 ImpactNest — Community Event Platform
 
-**Connect People. Organize Initiatives. Create Positive Impact.**
+### Connect People. Organize Initiatives. Create Positive Impact.
 
 **ImpactNest** is a full-stack community event platform designed to bring people together through meaningful social activities. It provides a centralized space where users can explore community events, create and manage their own initiatives, and participate in activities that contribute to positive social change.
 
