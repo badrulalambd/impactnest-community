@@ -43,10 +43,9 @@ From donation drives and community cleanups to tree plantation programs and wint
 ### Backend Development
 
 <p>
-  <img src="https://skillicons.dev/icons?i=nodejs,express,mongodb" alt="Backend Technologies" />
+  <img src="https://skillicons.dev/icons?i=express,mongodb,js" alt="Backend Technologies" />
 </p>
 
-- **Node.js** – Server-side JavaScript runtime.
 - **Express.js** – Backend framework for REST API development.
 - **MongoDB** – Database for storing application data.
 - **JavaScript** – Backend application logic and API development.
@@ -56,7 +55,6 @@ From donation drives and community cleanups to tree plantation programs and wint
 - **Lucide React & React Icons** – Icon libraries.
 - **React Hot Toast** – Interactive notifications and user feedback.
 - **next-themes** – Light and dark theme management.
-- **class-variance-authority** – Component style variant management.
 - **dotenv** – Environment variable configuration.
 
 ## ✨ Key Features
